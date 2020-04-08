@@ -13,21 +13,42 @@ class App extends React.Component {
     };
   }
 
+  //define component did nount here
+  //invoke "getyoutubevideo" here with a default query to start
+
+
+  //getyoutubevideo method... which compiles the options object
+  // and then calls searchyoutube
+  getVidsFromYT() {
+    //build our options object
+    var options = {
+      key: this.props.API_KEY,
+      query: $('input').val(),
+      max: 5
+    };
+
+    this.props.search(options, (videos) => {
+      this.setState({
+        allVideos: data,
+        playerVid: data[0]
+      });
+    });
+  }
+
   onVideoClick(video) {
     this.setState({playerVid: video});
   }
 
-  onSearchSubmit(data) {
-    this.setState({allVideos: data});
-    this.setState({playerVid: data[0]});
-  }
+  // onSearchSubmit(data) {
+
+  // }
 
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search action={this.onSearchSubmit.bind(this)}/>
+            <Search action={this.getVidsFromYT.bind(this)} />
           </div>
         </nav>
         <div className="row">

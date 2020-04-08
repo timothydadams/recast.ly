@@ -1,4 +1,5 @@
 var VideoListEntry = (props) => (
+  //could also instead pass in the deconstructed props as {video}
   <div className="video-list-entry media">
     <div className="media-left media-middle">
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />

@@ -1,22 +1,15 @@
-import YOUTUBE_API_KEY from '../config/youtube.js';
-import searchYouTube from '../lib/searchYouTube.js';
+
 
 var Search = (props) => (
 
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
-    <button className="btn hidden-sm-down" onClick={()=> {
-      //build our options object
-      var options = {
-        key: YOUTUBE_API_KEY,
-        query: $('input').val(),
-        max: 5
-      };
-
-      //pass options calling searchYouTube function for GET request
-      searchYouTube(options, props.action);
-
-    }}>
+    <input
+      className="form-control"
+      type="text"
+      onChange={()=>{ props.action; }}
+      //onChange = anon function with event that handles input change with e.target.value
+    />
+    <button className="btn hidden-sm-down" onClick={props.action}>
       <span className="glyphicon glyphicon-search"></span>
     </button>
   </div>
