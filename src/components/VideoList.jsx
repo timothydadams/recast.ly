@@ -1,8 +1,12 @@
 import VideoListEntry from './VideoListEntry.js';
 
 var VideoList = (props) => (
+  //if there is a particular prop that we want to get inside props...
+  //call it directly ny ({video}) where "video" is a key of props
+  //if we destructure here then we will need to also pass in the other params ie. onVideoClick
   <div className="video-list">
     {props.videos.map(item =>
+    // Add video key?
       <VideoListEntry video={item} click={props.click}/>
     )}
   </div>
