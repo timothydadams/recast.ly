@@ -1,21 +1,22 @@
-var searchYouTube = (options, callback) => {
+var searchYouTube = ({key, query, max = 5}, callback) => {
 
   $.get('https://www.googleapis.com/youtube/v3/search',
     {
       part: 'snippet',
-      key: options.key,
-      q: options.query,
-      maxResults: options.max,
-      type: 'video'
-      // ,
-      // videoEmbeddable: 'true'
-    },
-    (data) => {
+      key: key,
+      q: query,
+      maxResults: max,
+      type: 'video',
+      videoEmbeddable: 'true'
+    })
+    .done(({items}) => {
       if (callback) {
-        callback(data.items);
+        callback(items);
       }
-    }
-  );
+    })
+    .fail(({responseJSON}) => {
+      responseJSON.error.errors.forEach((err) => { console.log(err); });
+    });
 };
 
 export default searchYouTube;

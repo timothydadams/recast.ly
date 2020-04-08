@@ -13,24 +13,21 @@ class App extends React.Component {
     };
   }
 
-  //define component did nount here
-  //invoke "getyoutubevideo" here with a default query to start
-
-
   //getyoutubevideo method... which compiles the options object
   // and then calls searchyoutube
-  getVidsFromYT() {
+  getVidsFromYT(query) {
+    //var query = query || $('input').val();
+
     //build our options object
     var options = {
       key: this.props.API_KEY,
-      query: $('input').val(),
-      max: 5
+      query: query
     };
 
     this.props.search(options, (videos) => {
       this.setState({
-        allVideos: data,
-        playerVid: data[0]
+        allVideos: videos,
+        playerVid: videos[0]
       });
     });
   }
@@ -39,8 +36,9 @@ class App extends React.Component {
     this.setState({playerVid: video});
   }
 
-  // onSearchSubmit(data) {
-
+  //rendering info when component mounts to DOM
+  // componentDidMount() {
+  //   this.getVidsFromYT('corgi');
   // }
 
   render() {
